@@ -134,10 +134,6 @@ char* afisareTitlu(Nod* cap, float _pret) {
     return ("\nNot Found\n");
 }
 
-
-
-
-
 int main(){
 
     Nod* cap = citireListaCarti("carti.txt");
