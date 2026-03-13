@@ -126,6 +126,7 @@ char* afisareTitlu(Nod* cap, float _pret) {
         if(cap->info.pret == _pret) {
             char* copie = (char*)malloc(sizeof(char) * strlen(cap->info.titlu)+1);
             strcpy(copie,cap->info.titlu);
+            printf("\n");
             return copie;
         }
         
