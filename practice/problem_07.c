@@ -114,7 +114,6 @@ void deleteSpecificNode(Node** head, int key) {
     }
 }
 
-
 int main() {
     Node* head = NULL;
     addToList(&head, 1);
