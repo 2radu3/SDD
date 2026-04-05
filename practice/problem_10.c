@@ -42,7 +42,6 @@ void deleteFirstNode (Node** head) {
 
 //Deletion after a given node
 void deleteAfterGivenNode (Node** head, int key) {
-
 	Node* curr = *head;
 	while(curr != NULL) {
 		if(curr->data == key) {
@@ -65,6 +64,75 @@ void deleteAfterGivenNode (Node** head, int key) {
 	free (delNode);
 }
 
+// Deletion before a given node
+void deleteBeforeGivenNode (Node** head, int key) {
+	Node* curr = *head;
+	while(curr != NULL) {
+		if(curr->data == key) {
+			break;
+		}
+		curr = curr->next;
+	}
+
+	if (curr == NULL) {
+		return;
+	}
+
+	if (curr->prev == NULL) {
+		deleteFirstNode(head);
+		return;
+	}
+
+	Node* delNode = curr->prev;
+	curr->prev = delNode->prev;
+
+	if (delNode->prev != NULL) {
+		delNode->prev->next = curr;
+	} else {
+		*head = curr;
+	}
+
+	free(delNode);
+}
+
+// Deletion at a specific position
+void deletePosition (Node** head, int pos) {
+	if(*head == NULL) {
+		return;
+	}
+
+	Node* curr = *head;
+	int contor = 0;
+
+	while(curr != NULL) {
+		if(contor == pos) {
+			break;
+		}
+		curr = curr->next;
+		contor++;
+	}
+
+	if (curr == NULL) {
+		return;
+	}
+
+	if (curr->prev != NULL) {
+		curr->prev->next = curr->next;
+	}
+	
+	if (curr->next != NULL) {
+		curr->next->prev = curr->prev;
+	}
+
+	if (*head == curr) {
+		*head = curr->next;
+	}
+	
+	free (curr);
+}
+
+
+
 int main() {
 	Node* head = NULL, *prev = NULL;
 	addToList(&head, &prev, 1);
@@ -74,7 +142,11 @@ int main() {
 	addToList(&head, &prev, 5);
 	addToList(&head, &prev, 6);
     //deleteFirstNode(&head);
-	deleteAfterGivenNode(&head, 3);
+	//deleteAfterGivenNode(&head, 3);
+	//deleteBeforeGivenNode(&head, 3);
+	deletePosition(&head, 0);
+	
+	
 	afisare(head);
 
 	return 0;
