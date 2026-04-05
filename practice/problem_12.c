@@ -9,17 +9,23 @@ struct Node {
     Node* prev;
 };
 
-Node* reverse(Node *head) {
-  
-    if (head == NULL) return NULL;
+void reverse(Node** head) {
+    if (*head == NULL) return;
 
-    Node *temp = head->prev;
-    head->prev = head->next;
-    head->next = temp;
+    Node* prev = NULL;
+    Node* curr = *head;
 
-    if (head->prev == NULL) return head;
+    while(curr != NULL) {
+        prev = curr->prev;
+        curr->prev = curr->next;
+        curr->next = prev;
 
-    return reverse(head->prev);
+        curr = curr->prev;
+    }
+
+    if(prev != NULL) {
+        *head = prev->prev;
+    }   
 }
 
 void addToList(Node** head, Node** tail, int data) {
@@ -48,7 +54,9 @@ int main() {
     Node* tail = NULL;
     addToList(&head, &tail, 1);
     addToList(&head, &tail, 2);
-    head = reverse(head);
+    addToList(&head, &tail, 3);
+    addToList(&head, &tail, 4);
+    reverse(&head);
     print(head);
     
     return 0;
