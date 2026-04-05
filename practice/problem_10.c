@@ -150,9 +150,6 @@ void deleteLastNode(Node** head) {
 	free(curr);
 }
 
-
-
-
 int main() {
 	Node* head = NULL, *prev = NULL;
 	addToList(&head, &prev, 1);
