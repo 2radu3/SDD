@@ -131,6 +131,26 @@ void deletePosition (Node** head, int pos) {
 	free (curr);
 }
 
+// Deletion at the End
+void deleteLastNode(Node** head) {
+	if (*head == NULL) return;
+
+	if((*head)->next == NULL) {
+		free(head);
+		return;
+	}
+
+	Node* curr = *head;
+	while(curr->next != NULL) {
+		curr = curr->next;
+	}
+
+	curr->prev->next = NULL;
+
+	free(curr);
+}
+
+
 
 
 int main() {
@@ -144,8 +164,8 @@ int main() {
     //deleteFirstNode(&head);
 	//deleteAfterGivenNode(&head, 3);
 	//deleteBeforeGivenNode(&head, 3);
-	deletePosition(&head, 0);
-	
+	//deletePosition(&head, 0);
+	deleteLastNode(&head);
 	
 	afisare(head);
 
