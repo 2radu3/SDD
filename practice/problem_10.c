@@ -40,6 +40,31 @@ void deleteFirstNode (Node** head) {
     free (temp);
 }
 
+//Deletion after a given node
+void deleteAfterGivenNode (Node** head, int key) {
+
+	Node* curr = *head;
+	while(curr != NULL) {
+		if(curr->data == key) {
+			break;
+		}
+		curr = curr->next;
+	}
+
+	if(curr == NULL || curr->next == NULL) {
+		return;
+	}
+
+	Node* delNode = curr->next;
+	curr->next = delNode->next;
+
+	if (delNode->next != NULL) {
+		delNode->next->prev = curr;
+	}
+
+	free (delNode);
+}
+
 int main() {
 	Node* head = NULL, *prev = NULL;
 	addToList(&head, &prev, 1);
@@ -48,7 +73,8 @@ int main() {
 	addToList(&head, &prev, 4);
 	addToList(&head, &prev, 5);
 	addToList(&head, &prev, 6);
-    deleteFirstNode(&head);
+    //deleteFirstNode(&head);
+	deleteAfterGivenNode(&head, 3);
 	afisare(head);
 
 	return 0;
