@@ -1,5 +1,4 @@
 // Detect Cycle in Linked List
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,7 +16,6 @@ void addToList(Node** head, int data) {
         *head = newNode;
         newNode->next = *head;
     } else {
-        
         Node* temp = *head;
         while(temp->next != *head) {
             temp = temp->next;
