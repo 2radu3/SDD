@@ -94,15 +94,64 @@ void afisareListaCarti(Node* head) {
     }
 }
 
-//-dezalocare
 //-stergere Noduri dupa criterii
+void stergereDupaPret(Node** head, Node** tail, float pret) {
+    if(*head == NULL) return;
+
+    Node *aux = head;
+    while(aux != NULL) {
+        if(aux->info.pret == pret) {
+            Node* deSters = aux;
+
+            if(aux->prev != NULL) {
+                aux->prev->next = aux->next;
+            } else {
+                *head = aux->next;
+            }
+            
+            if(aux->next != NULL) {
+                aux->next->prev = aux->prev;
+            } else {
+                *tail = aux->prev;
+            }
+            aux = aux->next;
+            free(deSters->info.titlu);
+            free(deSters);
+        } else {
+            aux = aux->next;
+        }
+    }
+}
+
 //-conversie la alta structura invatata la seminar (inclusiv la vector)
 //-traversare in ambele sensuri
+void traversareCapCoada(Node* head) {
+    while(head != NULL) {
+        head = head->next;
+    }
+}
+
+void traversareCoadaCap(Node* tail) {
+    while(tail != NULL) {
+        tail = tail->prev;
+    }
+}
+
+//-dezalocare
+void dezalocare(Node** head, Node** tail) {
+    while(*head != NULL) {
+        free((*head)->info.titlu);
+        Node* aux = *head;
+        *head = (*head)->next;
+        free(aux);
+    }
+    *tail = NULL;
+}
 
 int main() {
     Node* tail = NULL;
     Node* head = citireListaCarti("carti.txt");
-    //afisareListaCarti(head);
+    afisareListaCarti(head);
     cautareDupaTitlu(head, tail, "MiculPrint");
 
     return 0;
