@@ -24,8 +24,8 @@ struct NodeDublu {
     NodeDublu* prev;
 };
 
-//-inserareLaInceput
-void inserareLaInceput(Node** head, Carte c) {
+//-inserareLaSfarsit
+void inserareLaSfarsit(Node** head, Carte c) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->info = c;
     newNode->next = NULL;
@@ -40,8 +40,8 @@ void inserareLaInceput(Node** head, Carte c) {
     }
 }
 
-//-inserarareLaSfarsit
-void inserareLaSfarsit(Node** head, Carte c) {
+//-inserarareLaInceput
+void inserareLaInceput(Node** head, Carte c) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->info = c;
     newNode->next = *head;
