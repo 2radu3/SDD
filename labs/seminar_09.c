@@ -132,5 +132,4 @@ void main() {
 	printf("\nInaltime arbore: %d", calculInaltimeArbore(rad));
 
 	dezalocare(&rad);
-
 }
